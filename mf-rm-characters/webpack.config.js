@@ -2,10 +2,11 @@ const { shareAll, withModuleFederationPlugin } = require('@angular-architects/mo
 
 module.exports = withModuleFederationPlugin({
 
-  name: 'mf-rm-characters',
-
+  name: 'mfe1',
+  filename: 'remoteEntry.js',
   exposes: {
-    './CharacterCardModule': './src/app/character-card/character-card.module.ts',
+    "./routes": "./src/app/mfe1.routes.ts",
+    './Component': './src/app/character-card/character-card.component.ts',
   },
 
   shared: {

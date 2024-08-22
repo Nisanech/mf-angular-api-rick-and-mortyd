@@ -1,0 +1,79 @@
+// styles.scss
+
+.navbar {
+  z-index: 10;
+  width: 100%;
+  background-color: #2C003E;
+}
+
+.navbar-container {
+  margin: 0 auto;
+  padding-left: 1.75rem; // px-7
+  padding-right: 1.75rem; // px-7
+}
+
+.navbar-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem; // py-4
+  padding-bottom: 1rem; // py-4
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.navbar-logo-text {
+  font-size: 1.5rem; // text-2xl
+  font-weight: bold; // font-bold
+  color: #B6FF00;
+
+  span {
+    color: #90CAF9;
+  }
+}
+
+.navbar-button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-radius: 0.75rem; // rounded-xl
+  background-color: transparent;
+  width: 58.33%; // w-7/12
+  gap: 1.5rem; // space-x-6
+}
+
+.navbar-button {
+  border-left: 1px solid #FFD54F;
+  display: flex;
+  align-items: center;
+
+  button {
+    width: 100%;
+    padding-top: 0.75rem; // py-3
+    padding-bottom: 0.75rem; // py-3
+    padding-left: 1.5rem; // px-6
+    padding-right: 1.5rem; // px-6
+    text-align: center;
+    border-radius: 9999px; // rounded-full
+    transition: all 0.3s ease;
+    background-color: transparent; // set this according to your needs
+    border: none;
+    cursor: pointer;
+
+    span {
+      display: block;
+      color: #B6FF00;
+      font-weight: 600; // font-semibold
+      font-size: 0.875rem; // text-sm
+    }
+  }
+}
