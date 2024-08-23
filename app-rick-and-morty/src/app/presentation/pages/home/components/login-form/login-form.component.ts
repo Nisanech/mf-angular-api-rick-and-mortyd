@@ -9,5 +9,14 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent {
+  buttonText: string = '';
 
+  ngOnInit(): void {
+    // Inicializa el texto del botón aquí
+    this.buttonText = 'Ingresar →';
+  }
+  
+  login() {
+    console.log('click');
+  }
 }

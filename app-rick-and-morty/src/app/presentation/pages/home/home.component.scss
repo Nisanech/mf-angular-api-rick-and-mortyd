@@ -1,0 +1,11 @@
+.grid-container {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  height: 420px;
+
+  .grid-item {
+    grid-column: span 1;
+    vertical-align: super;
+    padding: 2rem 10rem;
+  }
+}
