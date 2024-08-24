@@ -12,6 +12,7 @@ module.exports = withModuleFederationPlugin({
       "./src/app/presentation/shared/components/character-card/character-card.component.ts",
     "./CharacterTableComponent":
       "./src/app/presentation/shared/components/character-table/character-table.component.ts",
+    "CharacterPaginationEvent": "./src/app/infraestructure/services/events/event-bus.service.ts"
   },
 
   shared: {

@@ -5,3 +5,7 @@ app-rick-and-morty/.angular
 mf-rm-characters/node_modules
 mf-rm-characters/.vscode
 mf-rm-characters/.angular
+
+lib-event-bus-rm/node_modules
+lib-event-bus-rm/.angular
+lib-event-bus-rm/.vscode

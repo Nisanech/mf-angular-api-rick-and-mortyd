@@ -1,0 +1,36 @@
+$container-padding: 20px;
+
+.button-container {
+  --bg-color: beige;
+  --main-color: #2C003E;
+  --font-color: #323232;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: $container-padding;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 100px auto;
+
+  .button-confirm {
+    margin: 50px auto 0 auto;
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--font-color);
+    cursor: pointer;
+  
+    &:active {
+      box-shadow: 0px 0px var(--main-color);
+      transform: translate(3px, 3px);
+    }
+  }
+}
+

@@ -1,0 +1,39 @@
+$table-bg-color: #f8f9fa;
+$table-border-color: #dee2e6;
+$primary-color: #3498db;
+$hover-bg-color: lighten($primary-color, 40%);
+
+.table-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: $table-bg-color;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.characters-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid $table-border-color;
+  }
+
+  th {
+    background-color: $primary-color;
+    color: white;
+  }
+
+  tr:hover {
+    background-color: $hover-bg-color;
+  }
+
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+}

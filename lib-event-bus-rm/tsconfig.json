@@ -1,3 +1,4 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -8,15 +9,15 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
+    "paths": {
+      "lib-event-bus-rm": [
+        "dist/lib-event-bus-rm"
+      ]
+    },
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
-    "paths": {
-      "lib-event-bus-rm": [
-        "node_modules/lib-event-bus-rm"
-      ]
-    },
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,

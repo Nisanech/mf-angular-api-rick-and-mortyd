@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { EventBusService } from '../infraestructure/services/events/event-bus.service';
 
 
 
@@ -14,7 +15,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [EventBusService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

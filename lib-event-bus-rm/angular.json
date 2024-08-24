@@ -1,0 +1,43 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "lib-event-bus-rm": {
+      "projectType": "library",
+      "root": "projects/lib-event-bus-rm",
+      "sourceRoot": "projects/lib-event-bus-rm/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/lib-event-bus-rm/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/lib-event-bus-rm/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/lib-event-bus-rm/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/lib-event-bus-rm/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "ab08fea5-dfe6-4bbe-9028-c4c090c426dc"
+  }
+}
