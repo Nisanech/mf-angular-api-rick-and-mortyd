@@ -6,10 +6,10 @@
  * `eventName`: el nombre del evento que desencadena estas acciones.
  * */
 
-import { Action } from './action.model';
+import { IAction } from './action.model';
 
-export interface Config {
+export interface IConfig {
   source: string;
-  actions: Action[];
+  actions: IAction[];
   eventName: string;
 }

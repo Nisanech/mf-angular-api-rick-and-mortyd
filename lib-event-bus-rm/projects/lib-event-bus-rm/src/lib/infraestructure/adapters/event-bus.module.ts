@@ -5,12 +5,10 @@
  * */
 
 import { NgModule } from '@angular/core';
-import { EVENT_BUS } from '../providers/event-bus.token';
 import { EventBusService } from '../../application/services/event-bus.service';
 
 @NgModule({
   providers: [
-    { provide: EVENT_BUS, useExisting: EventBusService },
     EventBusService,
   ],
 })

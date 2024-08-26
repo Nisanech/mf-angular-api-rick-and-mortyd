@@ -13,60 +13,60 @@ import { loadRemoteModule } from '@angular-architects/module-federation';
 })
 export class DashboardComponent {
 
-  @ViewChild('characterContainer', { read: ViewContainerRef })
-  viewContainer!: ViewContainerRef;
+  // @ViewChild('characterContainer', { read: ViewContainerRef })
+  // viewContainer!: ViewContainerRef;
 
-  private eventBus: any;
+  // private eventBus: any;
 
-  async ngOnInit(): Promise<void> {
-    try {
-      // Cargar el EventBusService desde la aplicación remota
+  // async ngOnInit(): Promise<void> {
+  //   try {
+  //     // Cargar el EventBusService desde la aplicación remota
       
-    } catch (error) {
-      console.error('Error loading remote module:', error);
-    }
-  }
+  //   } catch (error) {
+  //     console.error('Error loading remote module:', error);
+  //   }
+  // }
   
 
-  async loadCharacterTable(pageNumber: number): Promise<void> {
-    console.log('loadCharacterTable', pageNumber);
+  // async loadCharacterTable(pageNumber: number): Promise<void> {
+  //   console.log('loadCharacterTable', pageNumber);
     
-    try {
-      console.log('entre aquí');
+  //   try {
+  //     console.log('entre aquí');
       
-      const m = await loadRemoteModule({
-        remoteName: 'mfe1',
-        exposedModule: './EventBusService',
-      });
-      console.log(m);
+  //     const m = await loadRemoteModule({
+  //       remoteName: 'mfe1',
+  //       exposedModule: './EventBusService',
+  //     });
+  //     console.log(m);
 
-      if (!m.EventBusService) {
-        console.error('EventBusService is undefined');
-        return;
-      }
+  //     if (!m.EventBusService) {
+  //       console.error('EventBusService is undefined');
+  //       return;
+  //     }
 
-      // Asignar la instancia del EventBusService a la variable eventBus
-      this.eventBus = new m.EventBusService();
-      console.log(this.eventBus);
-      // const m = await loadRemoteModule({
-      //   remoteName: 'mfe1',
-      //   exposedModule: './CharacterTableComponent',
-      // });
+  //     // Asignar la instancia del EventBusService a la variable eventBus
+  //     this.eventBus = new m.EventBusService();
+  //     console.log(this.eventBus);
+  //     // const m = await loadRemoteModule({
+  //     //   remoteName: 'mfe1',
+  //     //   exposedModule: './CharacterTableComponent',
+  //     // });
   
-      // const ref = this.viewContainer.createComponent(m.CharacterTableComponent);
+  //     // const ref = this.viewContainer.createComponent(m.CharacterTableComponent);
       
-      // if (this.eventBus) {
-      //   // Emitir el evento con el número de página
-      //   this.eventBus.emitCharacterPaginationEvent({ pageNumber });
-      // } else {
-      //   console.error('EventBusService is not loaded');
-      // }
+  //     // if (this.eventBus) {
+  //     //   // Emitir el evento con el número de página
+  //     //   this.eventBus.emitCharacterPaginationEvent({ pageNumber });
+  //     // } else {
+  //     //   console.error('EventBusService is not loaded');
+  //     // }
       
-    } catch (error) {
-      console.error('Error loading character table component:', error);
-    }
+  //   } catch (error) {
+  //     console.error('Error loading character table component:', error);
+  //   }
     
-  }
+  // }
 
   // loadCharacters() {
   //   this.characterComponent.loadCharacters();

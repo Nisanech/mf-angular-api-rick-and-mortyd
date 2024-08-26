@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Subscription } from 'rxjs';
-import { EventBusService } from 'src/app/infraestructure/services/events/event-bus.service';
-import { ICharacterPaginationEvent } from 'src/app/domain/interfaces/events/character-pagination-event.interface';
-EventBusService
+
+
+import { EventBusService, IEventBus } from 'lib-event-bus-rm';
+import { fromEvent } from 'rxjs';
 
 interface Character {
   id: number;
@@ -22,31 +22,25 @@ interface Character {
   styleUrls: ['./character-table.component.scss']
 })
 export class CharacterTableComponent  {
+  @Input() data: any;
   characters: Character[] = [];
-  subscription!: Subscription;
 
-  constructor(private http: HttpClient, private eventBus: EventBusService) {}
+  constructor(private eventBus: EventBusService, private http: HttpClient) {}
 
-  // ngOnInit(): void {
-  //   this.subscription = loadCharacters$.subscribe(() => {
-  //     this.loadData();
-  //   });
-  // }
-
-  ngOnInit(): void {
-    this.eventBus.characterPagination$.subscribe((event: ICharacterPaginationEvent) => {
-      console.log(event);
-      
-      this.loadData(event.pageNumber)
-    })
+  ngOnInit() {
+    // Escuchar el evento emitido por la aplicación host
+    this.eventBus.on('componentLoaded', (event: IEventBus) => {
+      this.updateTable(event.payload.page || 1);
+    });
   }
 
-  loadData(pageNumber: number): void {
-    console.log(pageNumber);
+  updateTable(page: number = 1) {
+    console.log(`Table updated for page: ${page}`);
     
-    this.http.get<any>(`https://rickandmortyapi.com/api/character/?page=${pageNumber}`)
+    this.http.get<any>(`https://rickandmortyapi.com/api/character/?page=${page}`)
       .subscribe(response => {
         this.characters = response.results;
+        console.log('Characters:', this.characters);
       });
   }
 }

@@ -9,3 +9,7 @@ mf-rm-characters/.angular
 lib-event-bus-rm/node_modules
 lib-event-bus-rm/.angular
 lib-event-bus-rm/.vscode
+
+host/node_modules
+host/.angular
+host/.vscode

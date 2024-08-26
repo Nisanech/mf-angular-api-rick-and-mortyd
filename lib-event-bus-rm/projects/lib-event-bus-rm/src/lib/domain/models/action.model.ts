@@ -6,7 +6,7 @@
  * `eventPayload`: opcional, para capturar los datos específicos del evento que desencadena
  *  la acción.
  * */
-export interface Action {
+export interface IAction {
   name: string;
   payload: any;
   eventPayload?: any;

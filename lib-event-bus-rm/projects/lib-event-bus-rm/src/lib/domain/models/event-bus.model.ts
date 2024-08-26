@@ -4,7 +4,7 @@
  * `source`: la fuente que emite el evento.
  * `payload`: los datos que acompañan al evento.
  * */
-export interface BusEvent {
+export interface IEventBus {
   name: string;
   source: string;
   payload: any;

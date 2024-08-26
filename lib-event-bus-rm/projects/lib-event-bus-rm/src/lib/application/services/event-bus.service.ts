@@ -1,70 +1,45 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
-import { Config } from '../../domain/models/config.model';
-import { Action } from '../../domain/models/action.model';
-import { BusEvent } from '../../domain/models/bus-event.model';
+import { IEventBus, IConfig } from '../../domain/models';
 
-@Injectable()
+
+@Injectable({
+  providedIn: 'root'
+})
 export class EventBusService {
-  // Subject que emite los eventos que se despachan.
-  private readonly _events$ = new Subject<BusEvent>();
+  private eventSubject = new BehaviorSubject<IEventBus | null>(null);
 
-  // Subject que emite las acciones que se deben ejecutar en respuesta a un evento.
-  private readonly _actions$ = new Subject<Action>();
+  private config: IConfig[] = []
 
-  // Subject utilizado para manejar la destrucción del servicio y la limpieza de recursos.
-  private readonly _destroy$ = new Subject<void>();
+  emit(event: IEventBus) {
+    this.eventSubject.next(event);
 
-  // Arreglo que almacena las configuraciones de eventos y acciones.
-  private _configs: Config[] = [];
-
-  // Observable que emite los eventos que se despachan.
-  public get actions$(): Observable<Action> {
-    return this._actions$.asObservable();
+    this.executeActions(event);
   }
 
-  // Inicializa el servicio, comenzando a escuchar eventos.
-  public init(): void {
-    this._events$
-      .pipe(takeUntil(this._destroy$))
-      .subscribe((event: BusEvent) => {
-        const config: Config | undefined = this.findConfig(event);
+  on(eventName: string, callback: (event: IEventBus ) => void): void {
+    this.eventSubject.asObservable().subscribe(event => {
+      if (event && event.name === eventName) {
+        callback(event);
+      }
+    })
+  }
 
-        if (config) {
-          this.invokeAction(config, event);
+  registerConfig(config: IConfig) {
+    this.config.push(config);
+  }
+
+  private executeActions(event: IEventBus) {
+    const eventConfig = this.config.filter(c => c.eventName === event.name && c.source === event.source);
+
+    eventConfig.forEach(config => {
+      config.actions.forEach(action => {
+        if (action.eventPayload) {
+          action.eventPayload = event.payload;
         }
-      });
-  }
-
-  // Añade una nueva configuración para manejar los eventos y sus acciones.
-  public addConfig(config: Config): void {
-    this._configs.push(config);
-  }
-
-  // Despacha un evento al bus, que lo manejará según las configuraciones.
-  public dispatchEvent(event: BusEvent): void {
-    this._events$.next(event);
-  }
-
-  // Método para limpiar recursos cuando se destruye el servicio.
-  public onDestroy(): void {
-    this._destroy$.next();
-  }
-
-  // Encuentra la configuración adecuada para un evento específico.
-  private findConfig({ source, name }: BusEvent): Config | undefined {
-    return this._configs.find(
-      (config: Config) =>
-        `${source}|${name}` === `${config.source}|${config.eventName}`
-    );
-  }
-
-  // Ejecuta las acciones configuradas en respuesta a un evento.
-  private invokeAction({ actions }: Config, { payload }: BusEvent) {
-    actions.forEach((action: Action) =>
-      this._actions$.next({ ...action, eventPayload: payload })
-    );
+        console.log(`Executing action: ${action.name} with payload:`, action.payload);
+      })
+    });
   }
 }
